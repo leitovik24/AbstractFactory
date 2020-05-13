@@ -20,7 +20,7 @@ public class UserServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(path);
             requestDispatcher.forward(req, resp);
         } else{
-            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+            getServletContext().getRequestDispatcher("/UserPage.jsp").forward(req, resp);
         }
 
 

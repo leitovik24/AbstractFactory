@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -9,7 +8,10 @@
 <body>
 <h1>Java Mentor!</h1>
 
-<h2>x -> Приветствие на супер-мега сайте супер-пупер юзверя ${requestScope.nameUser}</h2><br/>
-<h1>Privet chlen</h1>
+<h2> Привет user </h2><br/>
+<tr>
+    <td>${user.name}</td></tr>
+
+
 </body>
 </html>

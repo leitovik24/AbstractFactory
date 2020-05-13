@@ -21,8 +21,11 @@ public class User {
 
     }
 
-    public User(long id, String newName, String newEmail, String newRole){
-
+    public User(long id, String name, String email, String role){
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.role = role;
     }
 
 
