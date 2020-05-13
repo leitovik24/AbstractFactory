@@ -7,11 +7,13 @@
 </head>
 <body>
 <h3>Edit User</h3>
-<form action="/edit" method="post">
+<form action="/admin/edit" method="post">
     <label>New name</label><br>
-    <input name="name"  /><br><br>
+    <input type="text" name="name"  /><br><br>
     <label>New email</label><br>
-    <input name="email"  /><br><br>
+    <input type="text" name="email"  /><br><br>
+    <label>New role</label><br>
+    <input type="text" name="role"> <br>
     <input type="submit" value="Send" />
 </form>
 </body>

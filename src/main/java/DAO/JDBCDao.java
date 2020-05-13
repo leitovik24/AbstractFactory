@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCDao implements DAO {
+    @Override
+    public User getUserByName(String name) {
+        return null;
+    }
+
+    @Override
+    public boolean isUserExist(User user) {
+        return false;
+    }
+
     private Connection connection;
     private static JDBCDao instance;
 
@@ -89,7 +99,8 @@ public class JDBCDao implements DAO {
         try(PreparedStatement statement = connection.prepareStatement(SQL_UPDATE_USER)) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
-            statement.setLong(3, user.getId());
+            statement.setString(3, user.getRole());
+            statement.setLong(4, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

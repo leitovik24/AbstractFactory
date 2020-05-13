@@ -11,21 +11,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/delete")
+@WebServlet("/admin/delete")
 public class DeleteServlet extends HttpServlet {
     UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        getServletContext().getRequestDispatcher("/admin.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        long id = Long.parseLong(req.getParameter("id"));
-        userService.deleteUser(id);
-        resp.sendRedirect(req.getContextPath() + "/list");
-
-
+        if(req.getAttribute("access") == "true") {
+            long id = Long.parseLong(req.getParameter("id"));
+            userService.deleteUser(id);
+            String path = req.getContextPath() + "/admin/list";
+            resp.sendRedirect(path);
+        }
+        else {
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        }
     }
 }

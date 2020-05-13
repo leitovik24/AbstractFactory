@@ -9,16 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/list")
+@WebServlet("/admin/list")
 public class ShowUserServlet extends HttpServlet {
     UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<User> users = userService.getAllUsers();
-        req.setAttribute("users", users);
-        getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        if(req.getAttribute("access")=="true"){
+            List<User> users = userService.getAllUsers();
+            req.setAttribute("users", users);
+            getServletContext().getRequestDispatcher("/admin.jsp").forward(req, resp);
+        }
+        else{
+            getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+        }
     }
 
     @Override

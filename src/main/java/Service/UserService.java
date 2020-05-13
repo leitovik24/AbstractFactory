@@ -29,8 +29,6 @@ public class UserService  {
     }
 
 
-
-
     public void addUser(User user)  {
         dao.addUser(user);
     }
@@ -56,4 +54,13 @@ public class UserService  {
     public void editUser(User user)  {
         dao.editUser(user);
     }
+    public  boolean isUserExist(User user){
+       return  dao.isUserExist(user);
+
+    }
+    public User getUserByName(String name){
+       return dao.getUserByName(name);
+
+    }
+
 }

@@ -9,13 +9,29 @@ public class User {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private long id;
+    private long id;
     @Column(name = "name")
-   private String name;
+    private String name;
     @Column(name = "email")
-   private String email;
+    private String email;
+    @Column(name = "role")
+    private String role;
+
     public User(){
 
+    }
+
+    public User(long id, String newName, String newEmail, String newRole){
+
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public User(String name, String email) {
@@ -29,16 +45,20 @@ public class User {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public User(String name, String email, String role) {
+        this.name = name;
+        this.email = email;
+        this.role = role;
     }
 
     public void setName(String name) {
@@ -52,5 +72,17 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+
 }
+
+
+
+
 

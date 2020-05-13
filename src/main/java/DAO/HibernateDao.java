@@ -9,6 +9,7 @@ import java.util.List;
 
 public class HibernateDao implements DAO {
 
+
     private SessionFactory sessionFactory;
     private static HibernateDao instance;
 
@@ -23,6 +24,30 @@ public class HibernateDao implements DAO {
         return instance;
     }
 
+    @Override
+    public User getUserByName(String name) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query <User> query = session.createQuery("FROM User where name =?", User.class);
+        query.setParameter(0, name);
+        User user = query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return user;
+    }
+
+    @Override
+    public boolean isUserExist(User user) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        Query <User> query = session.createQuery("FROM User where name =? and email =?", User.class);
+        query.setParameter(0, user.getName());
+        query.setParameter(1, user.getEmail());
+        User user1 = query.uniqueResult();
+        transaction.commit();
+        session.close();
+        return user1 != null;
+    }
 
     @Override
     public void addUser(User user)  {
@@ -70,10 +95,11 @@ public class HibernateDao implements DAO {
     public void editUser(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery("update User set name =? , email =? where id =?");
+        Query query = session.createQuery("update User set name =? , email =?, role =?  where id =?");
         query.setParameter(0, user.getName());
         query.setParameter(1, user.getEmail());
-        query.setParameter(2, user.getId());
+        query.setParameter(2, user.getRole());
+        query.setParameter(3, user.getId());
         query.executeUpdate();
         transaction.commit();
         session.close();
